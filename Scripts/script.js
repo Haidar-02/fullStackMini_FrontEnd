@@ -2,7 +2,7 @@ pages = {};
 
 pages.page_index = () => {};
 
-pages.page_sign_in = () => {};
+pages.page_signin = () => {};
 
 pages.page_dashboard = () => {};
 
