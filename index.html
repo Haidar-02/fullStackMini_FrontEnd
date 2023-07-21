@@ -34,7 +34,7 @@
       <div
         class="col-md-6 bg-dark bg-gradient p-3 d-flex align-items-center justify-content-center text-light border-end border-5"
       >
-        <form class="mt-4 container">
+        <form class="mt-4 container" id="registerForm">
           <div class="row">
             <div class="col-md-6">
               <label for="FirstName" class="form-label mb-0">First Name</label>
@@ -99,6 +99,7 @@
               type="submit"
               value="Create Account"
               class="btn btn-outline-light mt-4 mb-3"
+              id="submit"
             />
           </div>
         </form>
@@ -106,7 +107,7 @@
     </div>
     <script src="Scripts/script.js"></script>
     <script>
-      loadFor("index");
+      pages.loadFor("index");
     </script>
   </body>
 </html>
