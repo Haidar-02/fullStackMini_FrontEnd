@@ -1,0 +1,33 @@
+body {
+  background-image: url("../assets/bg1.jpg");
+  background-size: auto;
+  background-blend-mode: darken;
+  animation: slidein 100s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+@keyframes slidein {
+  from {
+    background-position: top;
+    background-size: 3000px;
+  }
+  to {
+    background-position: -100px 0px;
+    background-size: 2750px;
+  }
+}
+.left-register {
+  background-image: url("../assets/left-background.jpg");
+  background-size: cover;
+  background-blend-mode: darken;
+  transition: 0.5s;
+}
+.left-register:hover {
+  scale: 1.1;
+  background-position: 40%;
+  right: -10%;
+}
