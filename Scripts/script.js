@@ -1,4 +1,6 @@
 pages = {};
+const baseUrl = "https://user/api";
+
 pages.page_index = () => {
   const registerForm = document.getElementById("registerForm");
   const passwordField = document.getElementById("Password");
