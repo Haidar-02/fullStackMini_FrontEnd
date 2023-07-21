@@ -47,24 +47,72 @@ pages.page_index = () => {
 
     const formData = new FormData(registerForm);
 
-    fetch("register.php", {
+    fetch("${baseUrl}/register", {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
-        alert(data.message);
         if (data.success) {
           window.location.href = "signin.html";
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.log(error));
   });
 };
 
-pages.page_signin = () => {};
+pages.page_signin = () => {
+  const signInForm = document.getElementById("signInForm");
+  const passwordField = document.getElementById("Password");
+  const showPassCheckbox = document.getElementById("ShowPassword");
 
-pages.page_dashboard = () => {};
+  showPassCheckbox.addEventListener("change", function () {
+    const showPassword = showPassCheckbox.checked;
+    passwordField.type = showPassword ? "text" : "password";
+  });
+
+  signInForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById("Username").value;
+    const password = passwordField.value;
+
+    const formData = new FormData(signInForm);
+    formData.append("username", username);
+    formData.append("password", password);
+
+    fetch(`${baseUrl}/signin`, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          window.location.href = "dashboard.html";
+          localStorage.setItem("username", data.username);
+          localStorage.setItem("F_Name", data.firstName);
+          localStorage.setItem("L_Name", data.lastName);
+        } else {
+          console.log(data.message);
+        }
+      })
+      .catch((error) => console.log(error));
+  });
+};
+
+pages.page_dashboard = () => {
+  const usernameSpan = document.getElementById("username");
+  const fullNameSpan = document.getElementById("fullName");
+
+  const storedUsername = localStorage.getItem("username");
+  const storedFullName =
+    localStorage.getItem("F_Name") + " " + localStorage.getItem("L_Name");
+
+  if (storedUsername && storedFullName) {
+    usernameSpan.textContent = storedUsername;
+    fullNameSpan.textContent = storedFullName;
+  }
+};
 
 pages.loadFor = (page) => {
   eval("pages.page_" + page + "();");
